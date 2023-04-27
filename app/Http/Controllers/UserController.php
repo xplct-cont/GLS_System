@@ -19,6 +19,13 @@ class UserController extends Controller
         $user = User::findOrFail($user_id);
         $user->update(['approved_at' => now()]);
 
-        return redirect()->route('admin.users.index')->withMessage('User approved successfully');
+        return redirect()->route('admin.users.index')->with('success_message', 'Request Approved successfully');
+    }
+
+    public function delete_requests($id){
+        $user = User::findOrFail($id);
+        $user->delete();
+
+    return redirect()->route('admin.users.index')->with('delete_message', 'Request Deleted!');
     }
 }
