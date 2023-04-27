@@ -17,7 +17,7 @@ class AdminSeeder extends Seeder
             'name' => 'Administrator',
             'email' => 'kennbassist@gmail.com',
             'email_verified_at' => now(),
-            'password' => bcrypt('admin12345'),
+            'password' => bcrypt('kenn12345'),
             'admin' => 1,
             'approved_at' => now(),
         ]);
