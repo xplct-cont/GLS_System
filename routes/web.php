@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +19,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/approval',  [App\Http\Controllers\HomeController::class,'approval'])->name('approval');
+
+    Route::middleware(['approved'])->group(function () {
+        Route::get('/home', [App\Http\Controllers\HomeController::class,'index'])->name('home');
+    });
+
+    Route::middleware(['admin'])->group(function () {
+        Route::get('/pending_approval_requests', [App\Http\Controllers\UserController::class,'index'])->name('admin.users.index');
+        Route::get('/users/{user_id}/approve', [App\Http\Controllers\UserController::class,'approve'])->name('admin.users.approve');
+        Route::get('/delete_requests/{id}', [UserController::class,'delete_requests']);
+    });
+});

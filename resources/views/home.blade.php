@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+
+<div class="text-center">
+    @if(auth()->check() && (auth()->user()->admin == true))
+        <a href="{{route('admin.users.index')}}">Go to Pending Approval Requests</a>
+    @endif</div>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
