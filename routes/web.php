@@ -19,24 +19,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
-
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-
-// Route::middleware(['auth'])->group(function () {
-//     Route::get('/approval',  [App\Http\Controllers\HomeController::class, 'approval'])->name('approval');
-//     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-// });
-
-
-// Route::middleware(['auth'])->group(function () {
-//     Route::get('/approval', [App\Http\Controllers\HomeController::class, 'approval'])->name('approval');
-
-//     Route::middleware(['approved'])->group(function () {
-//         Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-//     });
-// });
+Auth::routes(['verify' => true]);
 
 
 Route::middleware(['auth'])->group(function () {
