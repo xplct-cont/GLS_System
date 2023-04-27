@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use App\Notifications\NewUser;
 
 class RegisterController extends Controller
 {
@@ -69,5 +70,13 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+
+        $admin = User::where('admin', 1)->first();
+        if ($admin) {
+            $admin->notify(new NewUser($user));
+        }
+    
+        return $user;
+    
     }
 }
