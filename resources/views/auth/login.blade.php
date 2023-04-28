@@ -8,31 +8,28 @@
 </head>
 
 <body>
-    <!-- div container start -->
     <div class="container">
-        <!-- left side div start  -->
-        <div class="left">
-            <div class="top-left-text">
-                <h1>GUILD OF LODGE SECRETARIES</h1>
+
+        <div class="cont_1">
+            <div class="left">
+                <div class="logo-and-text">
+                    <img src="img/logo.png" style="height: 400px; width: 400px; margin: 0 auto;" alt="">
+                    <div class="bottom-center-text">
+                        <h1>GUILD OF LODGE SECRETARIES</h1>
+                    </div>
+                </div>
             </div>
         </div>
-        <!-- left side div end  -->
 
-        <!-- right side div start-->
         <div class="right">
-
-            <!-- form switch links start -->
             <div class="switchs">
                 <button class="switchlink" onclick="openForm(event, 'LogIn')" id="defaultOpen">Log In</button>
                 <button class="switchlink" onclick="openForm(event, 'SignUp')"> Sign Up</button>
 
             </div>
-            <!-- form switch links end -->
 
-            <!-- switch content container start -->
             <div class="switch-container">
 
-                <!-- login form start -->
                 <div id="LogIn" class="switchcontent">
 
                     <div style="text-align: center; margin-top:-100px;">
@@ -76,9 +73,7 @@
                         <button type="submit" class="actionbtn">Log In</button>
                     </form>
                 </div>
-                <!-- login form end -->
 
-                <!-- sign up form start -->
                 <div id="SignUp" class="switchcontent">
 
                     <div style="text-align: center; margin-top:-130px;">
@@ -140,21 +135,15 @@
                         <button type="submit" class="actionbtn">Sign Up</button>
                     </form>
                 </div>
-                <!-- sign up form end -->
 
             </div>
-            <!-- switch content container end -->
         </div>
-        <!-- right side div end  -->
     </div>
-    <!-- div container end -->
-
 </body>
 
 </html>
 
 <style>
-    /* basic styling  */
     * {
         margin: 0;
         padding: 0;
@@ -163,56 +152,47 @@
 
     }
 
+    body {
+        background-image: url("img/back_test.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: top;
+        background-color: #444444;
+    }
 
-    /* layout start */
-    /* css for creating two column layout  */
     .container {
         display: grid;
         height: 100vh;
         overflow: hidden;
-        grid-template-columns: 50% 50%;
+        grid-template-columns: 45% 50%;
 
     }
 
+    .cont_1 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
-
-    /* css for adding background image in left side  */
     .left {
 
-        position: relative;
-        background-color: #646464;
-        background-image: url('img/logo.png');
-        background-repeat: no-repeat;
-        background-size: 60% auto;
-        background-position: center center;
-
-
+        flex: 1
     }
 
-    .top-left-text {
-        position: absolute;
-        top: 70px;
-        left: 0;
-        right: 0;
+    .logo-and-text {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .bottom-center-text {
         text-align: center;
-        padding: 20px;
         color: white;
-        font-size: 14px;
+        font-size: 13px;
     }
 
-    /* css for setting background for right side div */
-    .right {
-        background-color: #646464;
-        background-image: url('img/back_test.png');
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: top;
-    }
 
-    /* layout end  */
-
-    /* switch system start */
-    /* css for styling the switchs */
     .switchs {
         overflow: hidden;
         border: 1px solid white;
@@ -224,7 +204,6 @@
         border-radius: 2rem;
     }
 
-    /* css for styling the switchlink buttons */
     .switchlink {
         background-color: inherit;
         float: left;
@@ -235,36 +214,31 @@
         transition: 0.3s;
     }
 
-    /* Change background color of switchlink buttons on hover */
     .switchlink:hover {
         background-color: white;
     }
 
-    /* Create an active/current switchlink class */
     .switchlink.active {
         background-color: #263095;
         color: white;
     }
 
-    /* adding margin to center a switch content  */
     .switch-container {
-        margin: 20% 15% auto 15%;
+        margin: 23% 15% auto 15%;
+        justify-content: center;
+        align-items: center;
     }
 
-    /* Style the switchcontent */
     .switchcontent {
         display: none;
         padding: 6px 12px;
         border-top: none;
     }
 
-    /* fade effect animation  on switchcontent  */
     .switchcontent {
         animation: fadeEffect 1s;
-        /* Fading effect takes 1 second */
     }
 
-    /* Go from zero to full opacity */
     @keyframes fadeEffect {
         from {
             opacity: 0;
@@ -275,17 +249,13 @@
         }
     }
 
-    /* styling title  */
     .title {
         margin-bottom: 3rem;
         color: #eee;
         font-size: 25px;
     }
 
-    /* switch system end */
 
-    /* sign up and login form start */
-    /* styling field-wrap div */
     .field-wrap {
         position: relative;
         height: 5rem;
@@ -293,7 +263,6 @@
 
     }
 
-    /* css for label  */
     label {
         position: absolute;
         top: 0;
@@ -305,7 +274,6 @@
         font-size: 1.2rem;
     }
 
-    /* css for input field */
     input {
         width: 100%;
         border: 0;
@@ -327,7 +295,6 @@
         border-color: #ccc;
     }
 
-    /* css for moving label to above the input field on focus and valid  */
     input:focus~label,
     input:valid~label {
         font-size: 10px;
@@ -335,7 +302,6 @@
         color: #ccc;
     }
 
-    /* css for input autofill  */
     input:-webkit-autofill,
     input:-webkit-autofill:hover,
     input:-webkit-autofill:focus {
@@ -343,7 +309,6 @@
         transition: background-color 5000s ease-in-out 0s;
     }
 
-    /* css for forgot link */
     .forgot {
         margin: 1rem auto;
         font-size: 1rem;
@@ -355,7 +320,6 @@
         font-size: italic;
     }
 
-    /* css for action button  */
     .actionbtn {
         padding: 0.7rem;
         margin-top: 1rem;
@@ -373,12 +337,9 @@
         color: #3c3232;
     }
 
-    /* sign up and login form end */
 
-    /* css for responsiveness */
     @media only screen and (max-width: 725px) {
 
-        /* layout start */
         .container {
             display: grid;
             grid-template-columns: 100%;
@@ -388,40 +349,31 @@
             display: none;
         }
 
-        /* layout end */
 
-        /* switch system start  */
         .switch-container {
             margin: 50% 5% auto 5%;
         }
 
-        /* switch system end  */
     }
 </style>
 
 <script>
-    /* function to open form based on formName */
     function openForm(evt, formName) {
-        // Declare all variables
         var i, switchcontent, switchlinks;
 
-        // Get all elements with class="switchcontent" and hide them
         switchcontent = document.getElementsByClassName("switchcontent");
         for (i = 0; i < switchcontent.length; i++) {
             switchcontent[i].style.display = "none";
         }
 
-        // Get all button elements with class="switchlink" and remove the class "active"
         switchlinks = document.getElementsByClassName("switchlink");
         for (i = 0; i < switchlinks.length; i++) {
             switchlinks[i].className = switchlinks[i].className.replace(" active", "");
         }
 
-        // Show the current tab, and add an "active" class to the button that opened the tab
         document.getElementById(formName).style.display = "block";
         evt.currentTarget.className += " active";
     }
 
-    // show default form
     document.getElementById("defaultOpen").click();
 </script>
