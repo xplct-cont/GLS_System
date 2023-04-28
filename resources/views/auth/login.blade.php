@@ -65,9 +65,11 @@
                         </div>
 
                         @if (Route::has('password.request'))
-                            <a style="color:#ccc;" href="{{ route('password.request') }}">
-                                {{ __('Forgot Your Password?') }}
-                            </a>
+                            <div style="display:flex; justify-content: flex-end; margin-top: 20px;">
+                                <a style="color:#ccc; " href="{{ route('password.request') }}">
+                                    {{ __('Forgot Your Password?') }}
+                                </a>
+                            </div>
                         @endif
 
                         <button type="submit" class="actionbtn">Log In</button>
@@ -258,7 +260,7 @@
 
     .field-wrap {
         position: relative;
-        height: 5rem;
+        height: 4rem;
         line-height: 44px;
 
     }
