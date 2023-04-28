@@ -12,8 +12,7 @@
     <div class="container">
         <div class="wrapper">
             <div style="display: flex; justify-content: center;">
-                <img src="img/logo.png" alt=""
-                    style="height: 120px; width: 120px; margin-top:10px; box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.3); border-radius: 50%;">
+                <img src="img/logo.png" alt="" style="height: 120px; width: 120px; margin-top:10px;">
             </div>
 
             <form method="POST" action="{{ route('login') }}">
