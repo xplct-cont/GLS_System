@@ -1,144 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
 </head>
 
 <body>
     <div class="container">
-
-        <div class="cont_1">
-            <div class="left">
-                <div class="logo-and-text">
-                    <img src="img/logo.png" style="height: 400px; width: 400px; margin: 0 auto;" alt="">
-                    <div class="bottom-center-text">
-                        <h1>GUILD OF LODGE SECRETARIES</h1>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="right">
-            <div class="switchs">
-                <button class="switchlink" onclick="openForm(event, 'LogIn')" id="defaultOpen">Log In</button>
-                <button class="switchlink" onclick="openForm(event, 'SignUp')"> Sign Up</button>
-
+        <div class="wrapper">
+            <div style="display: flex; justify-content: center;">
+                <img src="img/logo.png" alt=""
+                    style="height: 120px; width: 120px; margin-top:10px; box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.3); border-radius: 50%;">
             </div>
 
-            <div class="switch-container">
+            <form method="POST" action="{{ route('login') }}">
+                @csrf
 
-                <div id="LogIn" class="switchcontent">
+                <div class="row" style="margin-bottom: 30px;">
+                    <i class="fas fa-envelope"></i>
+                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
+                        name="email" placeholder="Email Address" value="{{ old('email') }}" required
+                        autocomplete="email" autofocus>
 
-                    <div style="text-align: center; margin-top:-100px;">
-                        <img src="img/logo.png" style="height: 150px; width: 150px; display: inline-block;"
-                            alt="">
-                    </div>
-                    <h1 class="title">Welcome Back!</h1>
+                    @error('email')
+                        <span class="invalid-feedback" role="alert">
+                            <strong style="color:red; font-weight:normal; font-size: 12px;">{{ $message }}</strong>
+                        </span>
+                    @enderror
 
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
-
-                        <div class="field-wrap">
-                            <input id="signInEmail" type="email"
-                                class="form-control @error('email') is-invalid @enderror" name="email"
-                                value="{{ old('email') }}" required autocomplete="email" autofocus>
-                            <label for="signInEmail">Email</label>
-                            @error('email')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong style="color:red; font-weight:normal;">{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                        <div class="field-wrap">
-                            <input id="signInPswd" type="password"
-                                class="form-control @error('password') is-invalid @enderror" name="password" required
-                                autocomplete="current-password">
-                            <label for="signInPswd">Password</label>
-                            @error('password')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong style="color:red; font-weight:normal;">{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-
-                        @if (Route::has('password.request'))
-                            <div style="display:flex; justify-content: flex-end; margin-top: 20px;">
-                                <a style="color:#ccc; " href="{{ route('password.request') }}">
-                                    {{ __('Forgot Your Password?') }}
-                                </a>
-                            </div>
-                        @endif
-
-                        <button type="submit" class="actionbtn">Log In</button>
-                    </form>
                 </div>
+                <div class="row" style="margin-bottom: 30px;">
+                    <i class="fas fa-lock"></i>
+                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror"
+                        name="password" placeholder="Password" required autocomplete="current-password">
 
-                <div id="SignUp" class="switchcontent">
+                    @error('password')
+                        <span class="invalid-feedback" role="alert">
+                            <strong style="color:red; font-weight:normal; font-size: 12px;">{{ $message }}</strong>
+                        </span>
+                    @enderror
 
-                    <div style="text-align: center; margin-top:-130px;">
-                        <img src="img/logo.png" style="height: 150px; width: 150px; display: inline-block;"
-                            alt="">
-                    </div>
-
-                    <h1 class="title">Sign Up</h1>
-                    <form method="POST" action="{{ route('register') }}">
-                        @csrf
-
-                        <div class="field-wrap" style="margin-top: -20px;">
-                            <input id="name" type="text"
-                                class="form-control @error('name') is-invalid @enderror" name="name"
-                                value="{{ old('name') }}" required autocomplete="name" autofocus>
-                            <label for="name">Full Name</label>
-                            @error('name')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong style="color:red; font-weight:normal;">{{ $message }}</strong>
-                                </span>
-                            @enderror
-
-                        </div>
-                        <div class="field-wrap">
-                            <input id="email" type="email"
-                                class="form-control @error('email') is-invalid @enderror" name="email"
-                                value="{{ old('email') }}" required autocomplete="email">
-                            <label for="email">Email Address</label>
-                            @error('email')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong style="color:red; font-weight:normal;">{{ $message }}</strong>
-                                </span>
-                            @enderror
-
-                        </div>
-                        <div class="field-wrap">
-                            <input id="password" type="password"
-                                class="form-control @error('password') is-invalid @enderror" name="password" required
-                                autocomplete="new-password">
-                            <label for="password">Password</label>
-                            @error('password')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong style="color:red; font-weight:normal;">{{ $message }}</strong>
-                                </span>
-                            @enderror
-
-                        </div>
-                        <div class="field-wrap">
-                            <input id="password-confirm" type="password" class="form-control"
-                                name="password_confirmation" required autocomplete="new-password">
-                            <label for="password-confirm">Confirm Password</label>
-                            @error('password')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong style="color:red; font-weight:normal;">{{ $message }}</strong>
-                                </span>
-                            @enderror
-
-                        </div>
-                        <button type="submit" class="actionbtn">Sign Up</button>
-                    </form>
                 </div>
-
-            </div>
+                <div class="pass"><a href="{{ route('password.request') }}">Forgot password?</a></div>
+                <div class="row button">
+                    <input type="submit" value="Login">
+                </div>
+                <div class="signup-link">Don't have an account? <a href="/register">Sign Up</a></div>
+            </form>
         </div>
     </div>
 </body>
@@ -146,236 +57,124 @@
 </html>
 
 <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
     * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-        font-family: "Roboto", sans-serif;
-
+        font-family: 'Poppins', sans-serif;
     }
 
     body {
-        background-image: url("img/back_test.png");
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: top;
-        background-color: #444444;
+        background: #c5c5c5;
+        overflow: hidden;
+    }
+
+    ::selection {
+        background: rgba(26, 188, 156, 0.3);
     }
 
     .container {
-        display: grid;
-        height: 100vh;
-        overflow: hidden;
-        grid-template-columns: 45% 50%;
-
+        max-width: 440px;
+        padding: 0 20px;
+        margin: 100px auto;
     }
 
-    .cont_1 {
-        display: flex;
-        justify-content: center;
+    .wrapper {
+        width: 100%;
+        background: #fff;
+        border-radius: 5px;
         align-items: center;
+        box-shadow: 0px 4px 10px 1px rgba(0, 0, 0, 0.1);
     }
 
-    .left {
-
-        flex: 1
+    .wrapper form {
+        padding: 30px 25px 25px 25px;
     }
 
-    .logo-and-text {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .bottom-center-text {
-        text-align: center;
-        color: white;
-        font-size: 13px;
-    }
-
-
-    .switchs {
-        overflow: hidden;
-        border: 1px solid white;
-        background-color: white;
-        width: max-content;
-        position: absolute;
-        right: 2rem;
-        top: 2rem;
-        border-radius: 2rem;
-    }
-
-    .switchlink {
-        background-color: inherit;
-        float: left;
-        border: none;
-        outline: none;
-        cursor: pointer;
-        padding: 10px 12px;
-        transition: 0.3s;
-    }
-
-    .switchlink:hover {
-        background-color: white;
-    }
-
-    .switchlink.active {
-        background-color: #263095;
-        color: white;
-    }
-
-    .switch-container {
-        margin: 23% 15% auto 15%;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .switchcontent {
-        display: none;
-        padding: 6px 12px;
-        border-top: none;
-    }
-
-    .switchcontent {
-        animation: fadeEffect 1s;
-    }
-
-    @keyframes fadeEffect {
-        from {
-            opacity: 0;
-        }
-
-        to {
-            opacity: 1;
-        }
-    }
-
-    .title {
-        margin-bottom: 3rem;
-        color: #eee;
-        font-size: 25px;
-    }
-
-
-    .field-wrap {
+    .wrapper form .row {
+        height: 45px;
+        margin-bottom: 15px;
         position: relative;
-        height: 4rem;
-        line-height: 44px;
-
     }
 
-    label {
+    .wrapper form .row input {
+        height: 100%;
+        width: 100%;
+        outline: none;
+        padding-left: 60px;
+        border-radius: 5px;
+        border: 1px solid lightgrey;
+        font-size: 16px;
+        transition: all 0.3s ease;
+    }
+
+    form .row input:focus {
+        border-color: #273094;
+        box-shadow: inset 0px 0px 2px 2px rgba(26, 188, 156, 0.25);
+    }
+
+    form .row input::placeholder {
+        color: #999;
+    }
+
+    .wrapper form .row i {
         position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        color: #d3d3d3;
-        transition: 0.2s all;
-        cursor: text;
-        font-size: 1.2rem;
-    }
-
-    input {
-        width: 100%;
-        border: 0;
-        outline: 0;
-        padding: 0.5rem 0;
-        border-bottom: 2px solid white;
-        box-shadow: none;
-        background-color: transparent;
-        font-size: 1.5rem;
+        width: 47px;
+        height: 100%;
         color: #fff;
+        font-size: 18px;
+        background: #273094;
+        border: 1px solid #273094;
+        border-radius: 5px 0 0 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
-    input:invalid {
-        outline: 0;
+    .wrapper form .pass {
+        display: flex;
+        margin: -8px 0 20px 0;
+        justify-content: end;
     }
 
-    input:focus,
-    input:valid {
-        border-color: #ccc;
-    }
-
-    input:focus~label,
-    input:valid~label {
-        font-size: 10px;
-        top: -2rem;
-        color: #ccc;
-    }
-
-    input:-webkit-autofill,
-    input:-webkit-autofill:hover,
-    input:-webkit-autofill:focus {
-        -webkit-text-fill-color: #fff;
-        transition: background-color 5000s ease-in-out 0s;
-    }
-
-    .forgot {
-        margin: 1rem auto;
-        font-size: 1rem;
-    }
-
-    .forgot a {
-        color: #eee;
+    .wrapper form .pass a {
+        color: #373737;
+        font-size: 17px;
         text-decoration: none;
-        font-size: italic;
     }
 
-    .actionbtn {
-        padding: 0.7rem;
-        margin-top: 1rem;
-        width: 100%;
-        font-size: 1.2rem;
-        cursor: pointer;
-        transition: all 0.5s ease;
-        background-color: #263095;
-        color: white;
+    .wrapper form .pass a:hover {
+        text-decoration: underline;
+    }
+
+    .wrapper form .button input {
+        color: #fff;
+        font-size: 20px;
+        font-weight: 500;
+        padding-left: 0px;
+        background: #273094;
         border: none;
+        cursor: pointer;
     }
 
-    .actionbtn:hover {
-        background-color: #ccc;
-        color: #3c3232;
+    form .button input:hover {
+        background: #716e6e;
     }
 
+    .wrapper form .signup-link {
+        text-align: center;
+        margin-top: 20px;
+        font-size: 17px;
+    }
 
-    @media only screen and (max-width: 725px) {
+    .wrapper form .signup-link a {
+        color: #273094;
+        text-decoration: none;
+    }
 
-        .container {
-            display: grid;
-            grid-template-columns: 100%;
-        }
-
-        .left {
-            display: none;
-        }
-
-
-        .switch-container {
-            margin: 50% 5% auto 5%;
-        }
-
+    form .signup-link a:hover {
+        text-decoration: underline;
     }
 </style>
-
-<script>
-    function openForm(evt, formName) {
-        var i, switchcontent, switchlinks;
-
-        switchcontent = document.getElementsByClassName("switchcontent");
-        for (i = 0; i < switchcontent.length; i++) {
-            switchcontent[i].style.display = "none";
-        }
-
-        switchlinks = document.getElementsByClassName("switchlink");
-        for (i = 0; i < switchlinks.length; i++) {
-            switchlinks[i].className = switchlinks[i].className.replace(" active", "");
-        }
-
-        document.getElementById(formName).style.display = "block";
-        evt.currentTarget.className += " active";
-    }
-
-    document.getElementById("defaultOpen").click();
-</script>
