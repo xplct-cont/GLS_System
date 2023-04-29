@@ -54,7 +54,7 @@
                 <div class="row button">
                     <input type="submit" value="Login">
                 </div>
-                <div class="signup-link">Don't have an account? <a href="/register">Sign Up</a></div>
+                <div class="signup-link">Don't have an account? <a href="/register">Register</a></div>
             </form>
         </div>
     </div>
