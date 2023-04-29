@@ -9,11 +9,13 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="container" style="position:relative; top: -50px;">
         <div class="wrapper">
             <div style="display: flex; justify-content: center;">
                 <img src="img/logo.png" alt="" style="height: 120px; width: 120px; margin-top:10px;">
             </div>
+
+            <p style="text-align: center; font-weight: 500">GUILD OF LODGE SECRETARIES</p>
 
             <form method="POST" action="{{ route('login') }}">
                 @csrf
@@ -43,6 +45,11 @@
                     @enderror
 
                 </div>
+
+                <label for="show-password-checkbox" style="position:relative; top:-20px; font-size: 15px;">
+                    <input type="checkbox" id="show-password-checkbox"> Show password
+                </label>
+
                 <div class="pass"><a href="{{ route('password.request') }}">Forgot password?</a></div>
                 <div class="row button">
                     <input type="submit" value="Login">
@@ -66,7 +73,7 @@
     }
 
     body {
-        background: #c5c5c5;
+        background: #e1e1e1;
         overflow: hidden;
     }
 
@@ -139,8 +146,8 @@
     }
 
     .wrapper form .pass a {
-        color: #373737;
-        font-size: 17px;
+        color: red;
+        font-size: 13px;
         text-decoration: none;
     }
 
@@ -165,7 +172,7 @@
     .wrapper form .signup-link {
         text-align: center;
         margin-top: 20px;
-        font-size: 17px;
+        font-size: 13px;
     }
 
     .wrapper form .signup-link a {
@@ -177,3 +184,16 @@
         text-decoration: underline;
     }
 </style>
+
+<script>
+    const passwordInput = document.getElementById('password');
+    const showPasswordCheckbox = document.getElementById('show-password-checkbox');
+
+    showPasswordCheckbox.addEventListener('change', () => {
+        if (showPasswordCheckbox.checked) {
+            passwordInput.type = 'text';
+        } else {
+            passwordInput.type = 'password';
+        }
+    });
+</script>
