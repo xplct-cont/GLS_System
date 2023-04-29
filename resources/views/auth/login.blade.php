@@ -15,12 +15,12 @@
                 <img src="img/logo.png" alt="" style="height: 120px; width: 120px; margin-top:10px;">
             </div>
 
-            <p style="text-align: center; font-weight: 500">GUILD OF LODGE SECRETARIES</p>
+            <p style="text-align: center; font-weight: 600; color:rgb(77, 77, 77)">GUILD OF LODGE SECRETARIES</p>
 
             <form method="POST" action="{{ route('login') }}">
                 @csrf
 
-                <div class="row" style="margin-bottom: 30px;">
+                <div class="row" style="margin-bottom: 20px;">
                     <i class="fas fa-envelope"></i>
                     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
                         name="email" placeholder="Email Address" value="{{ old('email') }}" required
@@ -33,7 +33,7 @@
                     @enderror
 
                 </div>
-                <div class="row" style="margin-bottom: 30px;">
+                <div class="row">
                     <i class="fas fa-lock"></i>
                     <input id="password" type="password" class="form-control @error('password') is-invalid @enderror"
                         name="password" placeholder="Password" required autocomplete="current-password">
@@ -46,7 +46,7 @@
 
                 </div>
 
-                <label for="show-password-checkbox" style="position:relative; top:-20px; font-size: 15px;">
+                <label for="show-password-checkbox" style="position:relative; top:-10px; font-size: 15px;">
                     <input type="checkbox" id="show-password-checkbox"> Show password
                 </label>
 
